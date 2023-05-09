@@ -4,6 +4,7 @@ from uvicorn import run
 from dotenv import load_dotenv
 import os
 from app.routers import resume
+from mangum import Mangum
 
 # Load env variables
 load_dotenv()
@@ -19,11 +20,12 @@ app.add_middleware(
     allow_origins = origins,
     allow_credentials = True,
     allow_methods = methods,
-    allow_headers = headers    
+    allow_headers = headers 
 )
 
 # Adds the router to the main app instance
 app.include_router(resume.router)
+handler = Mangum(app)
     
 if __name__ == "__main__":
 	port = int(os.environ.get('PORT', 5000))
