@@ -28,5 +28,5 @@ app.add_middleware(
 app.include_router(resume.router)
     
 if __name__ == "__main__":
-	port = int(os.environ.get('PORT', 5000))
+	port = int(os.environ.get('PORT', 8080))
 	run(app, host=os.environ.get('HOST', "0.0.0.0"), port=port)
